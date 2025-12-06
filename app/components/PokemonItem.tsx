@@ -28,7 +28,7 @@ export default function PokemonItem({ pokemon }: PokemonItemProps) {
     <h3 className=" text-gray-900 capitalize text-center">
         {pokemon.name}
     </h3>
-      <div className="relative w-full aspect-square mb-2 flex items-center justify-center overflow-hidden">
+      <div className="relative w-full aspect-square  flex items-center justify-center overflow-hidden">
         {imageUrl && !hasError ? (
           <Image
             src={imageUrl}
@@ -45,12 +45,9 @@ export default function PokemonItem({ pokemon }: PokemonItemProps) {
           </div>
         )}
       </div>
-      <div className="text-center">
-        <p className="text-base text-black mb-1">
+        <p className="text-base text-black text-center">
           Number: {pokemon.id}
         </p>
-        
-      </div>
     </div>
   );
 }
