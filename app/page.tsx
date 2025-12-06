@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Filters from '@/app/components/Filters';
 import PokemonList from '@/app/components/PokemonList';
@@ -8,7 +8,7 @@ import Pagination from '@/app/components/Pagination';
 import { PokemonType } from '@/lib/pokemon-types';
 import { api } from '@/lib/api';
 
-export default function PokemonPage() {
+function PokemonPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -87,6 +87,18 @@ export default function PokemonPage() {
         />
       </div>
     </div>
+  );
+}
+
+export default function PokemonPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white p-8 flex items-center justify-center">
+        <div className="text-gray-600">加载中...</div>
+      </div>
+    }>
+      <PokemonPageContent />
+    </Suspense>
   );
 }
 

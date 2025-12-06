@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 interface PaginationProps {
@@ -8,7 +9,7 @@ interface PaginationProps {
   hasPrevious: boolean;
 }
 
-export default function Pagination({ currentPage, hasNext, hasPrevious }: PaginationProps) {
+function PaginationContent({ currentPage, hasNext, hasPrevious }: PaginationProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -53,6 +54,18 @@ export default function Pagination({ currentPage, hasNext, hasPrevious }: Pagina
         Next
       </button>
     </div>
+  );
+}
+
+export default function Pagination(props: PaginationProps) {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center items-center gap-4 mt-8 mb-4">
+        <div className="text-gray-600">加载中...</div>
+      </div>
+    }>
+      <PaginationContent {...props} />
+    </Suspense>
   );
 }
 
