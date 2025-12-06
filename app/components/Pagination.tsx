@@ -16,7 +16,7 @@ function PaginationContent({ currentPage, hasNext, hasPrevious }: PaginationProp
   const handlePageChange = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', newPage.toString());
-    router.push(`/pokemon?${params.toString()}`);
+    router.push(`/?${params.toString()}`);
   };
 
   return (

@@ -40,7 +40,7 @@ function PokemonPageContent() {
     
     // Reset to first page when type changes
     params.set('page', '1');
-    router.push(`/pokemon?${params.toString()}`);
+    router.push(`/?${params.toString()}`);
   };
 
   // Fetch total Pokemon count (for display)
